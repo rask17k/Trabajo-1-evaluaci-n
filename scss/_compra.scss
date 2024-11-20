@@ -1,0 +1,171 @@
+// Variables
+$primary-color: #a855f7;
+$secondary-color: #ec4899;
+$bg-dark: #E2E1E1;
+$bg-card: #ffffff;
+$text-light: #191a1b;
+$text-gray: #131010;
+
+// Mixins
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin transition {
+    transition: all 0.3s ease;
+}
+
+// Estilos específicos para la página de pago
+.payment-body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: $bg-dark;
+    color: $text-light;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    @include flex-center;
+}
+
+.payment-container {
+    width: 100%;
+    max-width: 30rem;
+    margin: 2rem;
+    
+    @media (max-width: 768px) {
+        margin: 1rem;
+        max-width: 20rem;
+    }
+}
+
+.payment-card {
+    background: $bg-card;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    @include transition;
+}
+
+.form-header {
+    @include flex-center;
+    padding: 2rem 0;
+}
+
+.payment-icon {
+    width: 4rem;
+    height: 4rem;
+    color: $primary-color;
+}
+
+.payment-form {
+    padding: 2rem;
+
+    h2 {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        color: $text-light;
+        text-align: center;
+    }
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+
+    label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: $text-gray;
+        margin-bottom: 0.5rem;
+    }
+
+    input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        @include transition;
+
+        &:focus {
+            outline: none;
+            border-color: $primary-color;
+            box-shadow: 0 0 0 3px rgba($primary-color, 0.2);
+        }
+
+        &::placeholder {
+            color: #9ca3af;
+        }
+    }
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.help-icon {
+    background: none;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 0.25rem;
+    @include transition;
+
+    &:hover {
+        color: $primary-color;
+    }
+}
+
+.save-card {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1.5rem 0;
+    cursor: pointer;
+
+    input[type="checkbox"] {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 0.25rem;
+        border: 2px solid #e5e7eb;
+        @include transition;
+
+        &:checked {
+            background-color: $primary-color;
+            border-color: $primary-color;
+        }
+    }
+
+    span {
+        font-size: 0.875rem;
+        color: $text-gray;
+    }
+}
+
+.submit-button {
+    width: 100%;
+    background-color: $primary-color;
+    color: white;
+    padding: 0.875rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    @include transition;
+
+    &:hover {
+        background-color: $secondary-color;
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+}

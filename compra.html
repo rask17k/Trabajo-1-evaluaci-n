@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Details</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="payment-body">
+    <div class="payment-container">
+        <div class="payment-card">
+            <form class="payment-form" id="paymentForm">
+                <div class="form-header">
+                    <svg class="payment-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="2" y="5" width="20" height="14" rx="2"/>
+                        <line x1="2" y1="10" x2="22" y2="10"/>
+                        <line x1="7" y1="15" x2="12" y2="15"/>
+                    </svg>
+                </div>
+
+                <h2>Detalles de pago</h2>
+
+                <div class="form-group">
+                    <label for="name">Nombre de la tarjeta</label>
+                    <input 
+                        type="text" 
+                        id="name" 
+                        required 
+                        placeholder="Enter cardholder name"
+                        autocomplete="cc-name"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="card">Numero de la tarjeta</label>
+                    <div class="card-input-wrapper">
+                        <input 
+                            type="text" 
+                            id="card" 
+                            required 
+                            placeholder="1234 5678 9012 3456"
+                            maxlength="19"
+                            autocomplete="cc-number"
+                        >
+                        <div class="card-type"></div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group expiry-group">
+                        <label for="expiry">Fecha expiración</label>
+                        <input 
+                            type="text" 
+                            id="expiry" 
+                            required 
+                            placeholder="MM/YY"
+                            maxlength="5"
+                            autocomplete="cc-exp"
+                        >
+                    </div>
+
+                    <div class="form-group cvc-group">
+                        <label for="cvc">
+                            CVC
+                            <button type="button" class="help-icon" aria-label="CVC help">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                    <line x1="12" y1="17" x2="12" y2="17"/>
+                                </svg>
+                            </button>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="cvc" 
+                            required 
+                            placeholder="123"
+                            maxlength="4"
+                            autocomplete="cc-csc"
+                        >
+                    </div>
+                </div>
+
+                <label class="save-card">
+                    <input type="checkbox" checked>
+                    <span>Guardar mi tarjeta para futuras compras</span>
+                </label>
+
+                <button type="submit" class="submit-button">
+                    Pagar ahora
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('card').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.replace(/(.{4})/g, '$1 ').trim();
+            e.target.value = value;
+        });
+
+        document.getElementById('expiry').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.slice(0,2) + '/' + value.slice(2);
+            }
+            e.target.value = value;
+        });
+
+        document.getElementById('cvc').addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/\D/g, '');
+        });
+
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            console.log('Procesando pago...');
+        });
+    </script>
+</body>
+</html>
